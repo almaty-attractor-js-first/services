@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx/latest
+    ports:
+      - "8080:80"
+    networks:
+      - compose-net
+
+  jenkins:
+    image: jenkins
+    expose:
+       - 3000
+    volumes:
+       - jenkins-data:/var/lib/mysql/data
+    networks:
+       - compose-net
+
+volumes:
+  db-data:
+
+networks:
+  compose-net:
